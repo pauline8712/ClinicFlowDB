@@ -92,7 +92,7 @@ The main menu should appear:
 6. Reports
 0. Exit
 
-Example Menu Flow
+
 List Patients
 -----
 
