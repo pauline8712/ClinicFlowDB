@@ -226,6 +226,27 @@ class Program
                     }
                 }
             }
+
+            //Visar topp 5 patienter med mest appointments
+            static void TopPatientsReport(ClinicFlowContext context)
+            {
+                var query = context.Patients
+                    .Select(p => new
+                    {
+                        p.FirstName,
+                        p.LastName,
+                        AppointmentsCount = p.Appointments.Count
+                    })
+                    .OrderByDescending(p => p.AppointmentsCount)
+                    .Take(5)
+                    .ToList();
+
+                Console.WriteLine("\nTop 5 Patients by Appointments:");
+                foreach (var p in query)
+                {
+                    Console.WriteLine($"{p.FirstName} {p.LastName} - {p.AppointmentsCount} appointments");
+                }
+            }
         }
     }
 }
