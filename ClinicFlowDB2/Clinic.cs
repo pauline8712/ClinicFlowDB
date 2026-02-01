@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Numerics;
 
-namespace ClinicFlowDB2
+namespace ClinicFlowApp.Models
 {
-    internal class Clinic
+    public class Clinic
     {
+        public int ClinicID { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+
+        public ICollection<Doctor> Doctors { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }
