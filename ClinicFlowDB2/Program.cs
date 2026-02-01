@@ -164,6 +164,28 @@ class Program
                 context.SaveChanges();
                 Console.WriteLine("Appointment status updated!");
             }
+
+            //Metoden tar bort en existerande appointment från databasen
+            static void DeleteAppointment(ClinicFlowContext context)
+            {
+                Console.Write("Enter Appointment ID to delete: ");
+                if (!int.TryParse(Console.ReadLine(), out int id))
+                {
+                    Console.WriteLine("Invalid number!");
+                    return;
+                }
+
+                var appointment = context.Appointments.Find(id);
+                if (appointment == null)
+                {
+                    Console.WriteLine("Appointment not found!");
+                    return;
+                }
+
+                context.Appointments.Remove(appointment);
+                context.SaveChanges();
+                Console.WriteLine("Appointment deleted!");
+            }
         }
     }
 }
