@@ -1,5 +1,5 @@
 # ClinicFlow App
-##Scenario
+Scenario
 -----
 
 ClinicFlow is a console application simulating a clinic management system. The app allows users to manage patients, doctors, clinics, appointments, and treatments.
@@ -16,7 +16,7 @@ Console-based applications in C#
 
 The application simplifies management of patient appointments and provides reports, showing the relationships between patients, doctors, clinics, and treatments.
 
-##Installation and Setup
+Installation and Setup
 -----
 1. SQL Files and Database
 
@@ -49,7 +49,7 @@ Creates a read-only user and role for the views.
 
 Tip: Run each file separately and in order. In SSMS, right-click the database → New Query → run the scripts.
 
-##Scaffold Database First with Entity Framework
+Scaffold Database First with Entity Framework
 -----
 
 To connect your C# application to the database:
@@ -69,7 +69,7 @@ Scaffold-DbContext "Server=.\SQLEXPRESS;Database=ClinicFlowDB;Trusted_Connection
 
 This generates all models and relationships from the database (Database First).
 
-##Running the Application
+Running the Application
 -----
 
 Open Program.cs in the ClinicFlowApp project.
@@ -92,14 +92,14 @@ The main menu should appear:
 6. Reports
 0. Exit
 
-##Example Menu Flows
-##1. List Patients
+Example Menu Flows
+1. List Patients
 
 Choose 1. List Patients
 
 The program displays all patients with name, email, and phone.
 
-##2. Create Appointment
+2. Create Appointment
 
 Choose 3. Create Appointment
 
@@ -107,7 +107,7 @@ Enter PatientID, DoctorID, and date (yyyy-MM-dd HH:mm)
 
 The appointment is saved with status Booked.
 
-##3. Update Appointment Status
+3. Update Appointment Status
 
 Choose 4. Update Appointment Status
 
@@ -115,7 +115,7 @@ Enter AppointmentID
 
 Update the status to Scheduled, Completed, or Cancelled.
 
-##4. Delete Appointment
+4. Delete Appointment
 
 Choose 5. Delete Appointment
 
@@ -123,7 +123,7 @@ Enter AppointmentID
 
 The appointment is removed from the database.
 
-##5. Reports: Top Patients
+5. Reports: Top Patients
 
 Choose 6. Reports → 1. Top Patients by Appointments
 
