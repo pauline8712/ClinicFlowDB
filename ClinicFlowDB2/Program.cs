@@ -70,9 +70,10 @@ class Program
             if (!exit)
             {
                 Console.WriteLine("\nPress Enter to return to menu...");
-                Console.ReadLine(); // ÄNDRING: väntar på Enter så menyn inte blinkar direkt
+                Console.ReadLine(); 
             }
 
+            //Hämtar alla patienter från databasen och skriver ut dem i konsolen
             static void ListPatients(ClinicFlowContext context)
             {
                 var patients = context.Patients.ToList();
@@ -80,6 +81,16 @@ class Program
                 foreach (var p in patients)
                 {
                     Console.WriteLine($"{p.PatientID}: {p.FirstName} {p.LastName} | {p.Email} | {p.Phone}");
+                }
+            }
+
+            static void ListDoctors(ClinicFlowContext context)
+            {
+                var doctors = context.Doctors.Include(d => d.Clinic).ToList();
+                Console.WriteLine("\nDoctors:");
+                foreach (var d in doctors)
+                {
+                    Console.WriteLine($"{d.DoctorID}: {d.FirstName} {d.LastName} | {d.Specialization} | Clinic: {d.Clinic.Name}");
                 }
             }
         }
