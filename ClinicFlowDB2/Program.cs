@@ -12,6 +12,8 @@ class Program
         if (context.Database.CanConnect())
             Console.WriteLine("Connected to ClinicFlowDB");
 
+        bool exit = false;
+
         while (true)
         {
             Console.Clear();
@@ -62,6 +64,13 @@ class Program
                     break;
 
 
+
+            }
+
+            if (!exit)
+            {
+                Console.WriteLine("\nPress Enter to return to menu...");
+                Console.ReadLine(); // ÄNDRING: väntar på Enter så menyn inte blinkar direkt
             }
         }
     }
