@@ -1,12 +1,20 @@
-﻿using System;
+﻿using ClinicFlowDB2;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ClinicFlowDB2
+namespace ClinicFlowApp.Models
 {
-    internal class Doctor
+    public class Doctor
     {
+        public int DoctorID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Specialization { get; set; }
+        public DateTime CreatedAt { get; set; }
+
+        public int ClinicID { get; set; }
+        public Clinic Clinic { get; set; }
+
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }
