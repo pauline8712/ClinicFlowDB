@@ -93,6 +93,47 @@ class Program
                     Console.WriteLine($"{d.DoctorID}: {d.FirstName} {d.LastName} | {d.Specialization} | Clinic: {d.Clinic.Name}");
                 }
             }
+
+            //Skapar en ny appointment i databasen
+            static void CreateAppointment(ClinicFlowContext context)
+            {
+                Console.Write("Enter Patient ID: ");
+                if (!int.TryParse(Console.ReadLine(), out int patientId))
+                {
+                    Console.WriteLine("Invalid number!");
+                    return;
+                }
+
+                Console.Write("Enter Doctor ID: ");
+                if (!int.TryParse(Console.ReadLine(), out int doctorId))
+                {
+                    Console.WriteLine("Invalid number!");
+                    return;
+                }
+
+                Console.Write("Enter Appointment Date (yyyy-MM-dd HH:mm): ");
+                string inputDate = Console.ReadLine();
+
+                if (!DateTime.TryParse(inputDate, out DateTime date))
+                {
+                    Console.WriteLine("Invalid date format! Please use yyyy-MM-dd HH:mm");
+                    return;
+                }
+
+                var appointment = new Appointment
+                {
+                    PatientID = patientId,
+                    DoctorID = doctorId,
+                    ClinicID = context.Doctors.Find(doctorId).ClinicID,
+                    AppointmentDate = date,
+                    Status = "Booked",
+                    CreatedAt = DateTime.Now
+                };
+
+                context.Appointments.Add(appointment);
+                context.SaveChanges();
+                Console.WriteLine("Appointment created successfully!");
+            }
         }
     }
 }
