@@ -186,6 +186,46 @@ class Program
                 context.SaveChanges();
                 Console.WriteLine("Appointment deleted!");
             }
+
+            //
+            static void ReportsMenu(ClinicFlowContext context)
+            {
+                bool back = false;
+                while (!back)
+                {
+                    Console.Clear();
+                    Console.WriteLine("\n===== Reports Menu =====");
+                    Console.WriteLine("1. Top Patients by Appointments");
+                    Console.WriteLine("2. Appointments per Doctor");
+                    Console.WriteLine("0. Back to Main Menu");
+                    Console.Write("Choose a report: ");
+
+                    string input = Console.ReadLine();
+                    switch (input)
+                    {
+                        case "1":
+                            Console.Clear();
+                            TopPatientsReport(context);
+                            break;
+                        case "2":
+                            Console.Clear();
+                            AppointmentsPerDoctorReport(context);
+                            break;
+                        case "0":
+                            return;
+                        default:
+                            Console.WriteLine("Invalid option. Try again.");
+                            break;
+
+                    }
+
+                    if (!back)
+                    {
+                        Console.WriteLine("\nPress Enter to return to Reports Menu...");
+                        Console.ReadLine(); // ÄNDRING: vänta innan nästa meny visas
+                    }
+                }
+            }
         }
     }
 }
