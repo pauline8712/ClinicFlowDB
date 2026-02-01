@@ -1,10 +1,15 @@
-﻿namespace ClinicFlowDB2
+﻿using ClinicFlowApp.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+
+class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
+        using var context = new ClinicFlowContext();
+
+        if (context.Database.CanConnect())
+            Console.WriteLine("Connected to ClinicFlowDB");
     }
 }
