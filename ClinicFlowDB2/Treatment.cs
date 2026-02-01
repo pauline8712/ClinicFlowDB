@@ -1,12 +1,15 @@
-﻿using System;
+﻿using ClinicFlowDB2;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ClinicFlowDB2
+namespace ClinicFlowApp.Models
 {
-    internal class Treatment
+    public class Treatment
     {
+        public int TreatmentID { get; set; }
+        public string Name { get; set; }
+        public decimal? Price { get; set; }
+        public int? DurationMinutes { get; set; }
+
+        public ICollection<AppointmentTreatment> AppointmentTreatments { get; set; }
     }
 }
