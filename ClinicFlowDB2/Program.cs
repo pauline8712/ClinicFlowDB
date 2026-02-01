@@ -247,6 +247,25 @@ class Program
                     Console.WriteLine($"{p.FirstName} {p.LastName} - {p.AppointmentsCount} appointments");
                 }
             }
+
+            //Visar antal appointments per doktor
+            static void AppointmentsPerDoctorReport(ClinicFlowContext context)
+            {
+                var query = context.Doctors
+                    .Select(d => new
+                    {
+                        d.FirstName,
+                        d.LastName,
+                        AppointmentCount = d.Appointments.Count
+                    })
+                    .ToList();
+
+                Console.WriteLine("\nAppointments per Doctor:");
+                foreach (var d in query)
+                {
+                    Console.WriteLine($"{d.FirstName} {d.LastName} - {d.AppointmentCount} appointments");
+                }
+            }
         }
     }
 }
