@@ -92,14 +92,16 @@ The main menu should appear:
 6. Reports
 0. Exit
 
-Example Menu Flows
-1. List Patients
+Example Menu Flow
+List Patients
+-----
 
 Choose 1. List Patients
 
 The program displays all patients with name, email, and phone.
 
-2. Create Appointment
+Create Appointment
+-----
 
 Choose 3. Create Appointment
 
@@ -107,7 +109,8 @@ Enter PatientID, DoctorID, and date (yyyy-MM-dd HH:mm)
 
 The appointment is saved with status Booked.
 
-3. Update Appointment Status
+Update Appointment Status
+-----
 
 Choose 4. Update Appointment Status
 
@@ -115,7 +118,8 @@ Enter AppointmentID
 
 Update the status to Scheduled, Completed, or Cancelled.
 
-4. Delete Appointment
+Delete Appointment
+-----
 
 Choose 5. Delete Appointment
 
@@ -123,7 +127,8 @@ Enter AppointmentID
 
 The appointment is removed from the database.
 
-5. Reports: Top Patients
+Reports: Top Patients
+-----
 
 Choose 6. Reports → 1. Top Patients by Appointments
 
