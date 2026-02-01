@@ -1,12 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Numerics;
 
-namespace ClinicFlowDB2
+namespace ClinicFlowApp.Models
 {
-    internal class ClinicFlowContext
+    public class ClinicFlowContext : DbContext
     {
+        public DbSet<Clinic> Clinics { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Treatment> Treatments { get; set; }
+        public DbSet<AppointmentTreatment> AppointmentTreatments { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlServer(
+                @"Server=.\SQLEXPRESS;Database=ClinicFlowDB;Trusted_Connection=True;TrustServerCertificate=True;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<AppointmentTreatment>()
+                .HasOne(at => at.Appointment)
+                .WithMany(a => a.AppointmentTreatments)
+                .HasForeignKey(at => at.AppointmentID);
+
+            modelBuilder.Entity<AppointmentTreatment>()
+                .HasOne(at => at.Treatment)
+                .WithMany(t => t.AppointmentTreatments)
+                .HasForeignKey(at => at.TreatmentID);
+        }
     }
 }
