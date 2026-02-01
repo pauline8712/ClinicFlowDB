@@ -72,6 +72,16 @@ class Program
                 Console.WriteLine("\nPress Enter to return to menu...");
                 Console.ReadLine(); // ÄNDRING: väntar på Enter så menyn inte blinkar direkt
             }
+
+            static void ListPatients(ClinicFlowContext context)
+            {
+                var patients = context.Patients.ToList();
+                Console.WriteLine("\nPatients:");
+                foreach (var p in patients)
+                {
+                    Console.WriteLine($"{p.PatientID}: {p.FirstName} {p.LastName} | {p.Email} | {p.Phone}");
+                }
+            }
         }
     }
 }
