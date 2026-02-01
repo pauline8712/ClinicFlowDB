@@ -134,6 +134,36 @@ class Program
                 context.SaveChanges();
                 Console.WriteLine("Appointment created successfully!");
             }
+
+            //Updates the status of an existing appointment in the database
+            static void UpdateAppointmentStatus(ClinicFlowContext context)
+            {
+                Console.Write("Enter Appointment ID to update: ");
+                if (!int.TryParse(Console.ReadLine(), out int id))
+                {
+                    Console.WriteLine("Invalid number!");
+                    return;
+                }
+
+                var appointment = context.Appointments.Find(id);
+                if (appointment == null)
+                {
+                    Console.WriteLine("Appointment not found!");
+                    return;
+                }
+
+                Console.Write("Enter new Status (Scheduled, Completed, Cancelled): ");
+                string status = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(status))
+                {
+                    Console.WriteLine("Status cannot be empty!");
+                    return;
+                }
+
+                appointment.Status = status;
+                context.SaveChanges();
+                Console.WriteLine("Appointment status updated!");
+            }
         }
     }
 }
