@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using ClinicFlowApp.Models;
+using System.Collections.Generic;
 using System.Numerics;
 
-namespace ClinicFlowApp.Models
+namespace ClinicFlowDB2.Models
 {
     public class Clinic
     {

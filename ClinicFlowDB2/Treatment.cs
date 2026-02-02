@@ -1,4 +1,5 @@
 ﻿using ClinicFlowDB2;
+using ClinicFlowDB2.Models;
 using System.Collections.Generic;
 
 namespace ClinicFlowApp.Models

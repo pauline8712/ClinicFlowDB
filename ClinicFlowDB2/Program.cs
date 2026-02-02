@@ -1,4 +1,5 @@
 ﻿using ClinicFlowApp.Models;
+using ClinicFlowDB2.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -24,8 +25,10 @@ class Program
             Console.WriteLine("4. Update Appointment Status");
             Console.WriteLine("5. Delete Appointment");
             Console.WriteLine("6. Reports");
+            Console.WriteLine("7. View Appointments"); 
             Console.WriteLine("0. Exit");
             Console.Write("Choose an option: ");
+
 
             string input = Console.ReadLine();
 
@@ -55,6 +58,10 @@ class Program
                     Console.Clear();
                     ReportsMenu(context);
                     break;
+                case "7":
+                    Console.Clear();
+                    ViewAppointments(context); // Nytt val
+                    break;
                 case "0":
                     exit = true;
                     Console.WriteLine("Exiting program...");
@@ -62,10 +69,8 @@ class Program
                 default:
                     Console.WriteLine("Invalid option. Try again.");
                     break;
-
-
-
             }
+
 
             if (!exit)
             {
@@ -97,6 +102,15 @@ class Program
             //Skapar en ny appointment i databasen
             static void CreateAppointment(ClinicFlowContext context)
             {
+                Console.Clear();
+                // Visa patienter
+                ListPatients(context);
+                Console.WriteLine();
+
+                // Visa läkare
+                ListDoctors(context);
+                Console.WriteLine();
+
                 Console.Write("Enter Patient ID: ");
                 if (!int.TryParse(Console.ReadLine(), out int patientId))
                 {
@@ -133,12 +147,36 @@ class Program
                 context.Appointments.Add(appointment);
                 context.SaveChanges();
                 Console.WriteLine("Appointment created successfully!");
+
+               
             }
 
-            //Updates the status of an existing appointment in the database
+
+            // Ny metod för att visa alla appointments med patient, doctor och clinic
+            static void ViewAppointments(ClinicFlowContext context)
+            {
+                var appointments = context.Appointments
+                    .Include(a => a.Patient)
+                    .Include(a => a.Doctor)
+                    .Include(a => a.Clinic)
+                    .ToList();
+
+                Console.WriteLine("\n===== All Appointments =====");
+                foreach (var a in appointments)
+                {
+                    Console.WriteLine($"{a.AppointmentID}: {a.AppointmentDate:yyyy-MM-dd HH:mm} | Status: {a.Status} | Patient: {a.Patient.FirstName} {a.Patient.LastName} | Doctor: {a.Doctor.FirstName} {a.Doctor.LastName} | Clinic: {a.Clinic.Name}");
+                }
+            }
+
+
             static void UpdateAppointmentStatus(ClinicFlowContext context)
             {
-                Console.Write("Enter Appointment ID to update: ");
+                Console.Clear();
+
+                // Visa appointments först
+                ViewAppointments(context);
+
+                Console.Write("\nEnter Appointment ID to update: ");
                 if (!int.TryParse(Console.ReadLine(), out int id))
                 {
                     Console.WriteLine("Invalid number!");
@@ -163,12 +201,20 @@ class Program
                 appointment.Status = status;
                 context.SaveChanges();
                 Console.WriteLine("Appointment status updated!");
+
             }
+
+
 
             //Metoden tar bort en existerande appointment från databasen
             static void DeleteAppointment(ClinicFlowContext context)
             {
-                Console.Write("Enter Appointment ID to delete: ");
+                Console.Clear();
+
+                // Visa appointments först
+                ViewAppointments(context);
+
+                Console.Write("\nEnter Appointment ID to delete: ");
                 if (!int.TryParse(Console.ReadLine(), out int id))
                 {
                     Console.WriteLine("Invalid number!");
@@ -186,6 +232,8 @@ class Program
                 context.SaveChanges();
                 Console.WriteLine("Appointment deleted!");
             }
+
+
 
             //
             static void ReportsMenu(ClinicFlowContext context)
@@ -248,7 +296,6 @@ class Program
                 }
             }
 
-            //Visar antal appointments per doktor
             static void AppointmentsPerDoctorReport(ClinicFlowContext context)
             {
                 var query = context.Doctors

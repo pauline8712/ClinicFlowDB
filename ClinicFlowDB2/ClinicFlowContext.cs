@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ClinicFlowDB2.Models;
+using ClinicFlowApp.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Numerics;
 
-namespace ClinicFlowApp.Models
+namespace ClinicFlowDB2.Models
 {
     public class ClinicFlowContext : DbContext
     {

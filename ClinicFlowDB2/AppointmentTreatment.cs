@@ -1,4 +1,6 @@
-﻿namespace ClinicFlowApp.Models
+﻿using ClinicFlowApp.Models;
+
+namespace ClinicFlowDB2.Models
 {
     public class AppointmentTreatment
     {
