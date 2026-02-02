@@ -133,3 +133,9 @@ Reports: Top Patients
 Choose 6. Reports → 1. Top Patients by Appointments
 
 Displays the 5 patients with the most appointments.
+
+
+ER Diagram
+-----
+
+https://app.diagrams.net/#
