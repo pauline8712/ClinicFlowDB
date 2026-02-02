@@ -49,25 +49,6 @@ Creates a read-only user and role for the views.
 
 Tip: Run each file separately and in order. In SSMS, right-click the database → New Query → run the scripts.
 
-Scaffold Database First with Entity Framework
------
-
-To connect your C# application to the database:
-
-Open Visual Studio 2022.
-
-Open Package Manager Console (Tools > NuGet Package Manager > Package Manager Console).
-
-Run the following command (replace server and database if needed):
-
-Scaffold-DbContext "Server=.\SQLEXPRESS;Database=ClinicFlowDB;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context ClinicFlowContext
-
-
--OutputDir Models specifies where the model classes are generated.
-
--Context ClinicFlowContext specifies the name of the DbContext class.
-
-This generates all models and relationships from the database (Database First).
 
 Running the Application
 -----
