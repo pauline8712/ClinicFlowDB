@@ -289,7 +289,7 @@ class Program
                     .Take(5)
                     .ToList();
 
-                Console.WriteLine("\nTop 5 Patients by Appointments:");
+                 Console.WriteLine("\nTop 5 Patients by Appointments:");
                 foreach (var p in query)
                 {
                      Console.WriteLine($"{p.FirstName} {p.LastName} - {p.AppointmentsCount} appointments");

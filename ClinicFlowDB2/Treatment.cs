@@ -11,6 +11,7 @@ namespace ClinicFlowApp.Models
         public decimal? Price { get; set; }
         public int? DurationMinutes { get; set; }
 
+       
         public ICollection<AppointmentTreatment> AppointmentTreatments { get; set; }
     }
 }
