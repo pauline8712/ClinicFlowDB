@@ -214,7 +214,7 @@ class Program
                 // Visa appointments först
                 ViewAppointments(context);
 
-                Console.Write("\nEnter Appointment ID to delete: ");
+                 Console.Write("\nEnter Appointment ID to delete: ");
                 if (!int.TryParse(Console.ReadLine(), out int id))
                 {
                     Console.WriteLine("Invalid number!");
